@@ -25,9 +25,13 @@ class UserRemoteDatataSource implements IUserRemoteDataSource {
       logInfo("Got code 200");
 
       var jsonString = response.body;
+      final jsonResponse = jsonDecode(jsonString);
+      UserRemoteModel userRemoteModel =
+          RandomUserJsonReponseModel.fromJson(jsonResponse).results[0];
+      final userModel = RandomUserModel.fromRemote(userRemoteModel).toEntity();
+      return userModel;
 
-      return RandomUser(
-          city: '', gender: 'xx', name: '', email: '', picture: '');
+      //return RandomUser(city: '', gender: 'xx', name: '', email: '', picture: '');
     } else {
       logError("Got error code ${response.statusCode}");
     }

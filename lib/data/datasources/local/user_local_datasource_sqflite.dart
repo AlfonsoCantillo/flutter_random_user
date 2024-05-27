@@ -30,6 +30,11 @@ class UserLocalDataSourceSqfLite implements IUserLocalDataSource {
     final db = await database;
     //TODO
     // aquí se debe llamar al db.insert
+    db.insert(
+      'users',
+      user.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   @override
@@ -37,9 +42,10 @@ class UserLocalDataSourceSqfLite implements IUserLocalDataSource {
     // Get a reference to the database.
     final db = await database;
     //TODO
-    // aqui se debe hacer un query en la tabla users, la base de datos que retorna un List<Map<String, dynamic>> maps
+    // aqui se debe hacer un query en la tabla users, la base de datos que
+    //retorna un List<Map<String, dynamic>> maps
 
-    List<Map<String, dynamic>> maps = <Map<String, dynamic>>[];
+    List<Map<String, dynamic>> maps = await db.query('users');
 
     return List.generate(maps.length, (i) {
       return RandomUser(
@@ -57,7 +63,9 @@ class UserLocalDataSourceSqfLite implements IUserLocalDataSource {
   Future<void> deleteUser(id) async {
     Database db = await database;
     //TODO
-    // aquí se debe llamar al db.delete usando el where con el id  - tabla users
+    // aquí se debe llamar al db.delete usando el where con el id  -
+    //tabla users
+    await db.delete('users', where: 'id = ?', whereArgs: [id]);
   }
 
   @override
@@ -65,12 +73,16 @@ class UserLocalDataSourceSqfLite implements IUserLocalDataSource {
     Database db = await database;
     //TODO
     // aquí se debe llamar al db.delete  - tabla users
+    await db.delete('users');
   }
 
   @override
   Future<void> updateUser(RandomUser user) async {
     Database db = await database;
     //TODO
-    // aquí se debe llamar al db.update actualizando nombre y cuidad usando el where con el id  - tabla users
+    // aquí se debe llamar al db.update actualizando nombre y cuidad
+    //usando el where con el id  - tabla users
+    await db
+        .update('users', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
   }
 }

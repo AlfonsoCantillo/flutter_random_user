@@ -49,7 +49,7 @@ class ListItem extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => UserDetailPage(), arguments: [user, user.id]);
                 },
-                child: Text("more"),
+                child: Text("Edit"),
               )
             ],
           ),

@@ -11,8 +11,8 @@ class RandomUser {
 
   int? id;
   String name;
-  final String gender;
-  final String email;
+  String gender;
+  String email;
   final String picture;
   String city;
 

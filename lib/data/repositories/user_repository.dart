@@ -14,35 +14,37 @@ class UserRepository implements IUserRepository {
     // TODO
     // Aquí debemos obtener una instancia de RandomUser del remoteDataSource
     // y pasarla al localDataSource
+    var user = await remoteDataSource.getUser();
+    await localDataSource.addUser(user);
     return true;
   }
 
   @override
-  Future<List<RandomUser>> getAllUsers() {
+  Future<List<RandomUser>> getAllUsers() async {
     // TODO
     // Aquí debemos obtener una lista de RandomUser del localDataSource
-    List<RandomUser> list = [];
+    List<RandomUser> list = await localDataSource.getAllUsers();
     return Future.value(list);
   }
 
   @override
-  Future<void> deleteUser(id) {
+  Future<void> deleteUser(id) async {
     // TODO
     // Aquí debemos eliminar un usuario del localDataSource
-    return Future.value();
+    await localDataSource.deleteUser(id);
   }
 
   @override
-  Future<void> deleteAll() {
+  Future<void> deleteAll() async {
     // TODO
     // Aquí debemos eliminar todos los usuarios del localDataSource
-    return Future.value();
+    await localDataSource.deleteAll();
   }
 
   @override
-  Future<void> updateUser(user) {
+  Future<void> updateUser(user) async {
     // TODO
     // Aquí debemos actualizar un usuario del localDataSource
-    return Future.value();
+    await localDataSource.updateUser(user);
   }
 }

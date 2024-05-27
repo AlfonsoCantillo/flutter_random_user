@@ -16,12 +16,16 @@ class _UserDetailPageState extends State<UserDetailPage> {
 
   final controllerName = TextEditingController();
   final controllerCity = TextEditingController();
+  final controllerEmail = TextEditingController();
+  final controllerGender = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.find();
     controllerName.text = user.name;
     controllerCity.text = user.city;
+    controllerEmail.text = user.email;
+    controllerGender.text = user.gender;
     return Scaffold(
       appBar: AppBar(
         title: Text(user.name),
@@ -40,7 +44,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
         child: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 5,
             ),
             TextField(
                 controller: controllerName,
@@ -48,7 +52,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                   labelText: 'Name',
                 )),
             SizedBox(
-              height: 20,
+              height: 5,
             ),
             TextField(
                 key: Key('TextFieldCity'),
@@ -57,10 +61,26 @@ class _UserDetailPageState extends State<UserDetailPage> {
                   labelText: 'City',
                 )),
             SizedBox(
-              height: 20,
+              height: 5,
+            ),
+            TextField(
+                controller: controllerEmail,
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                )),
+            SizedBox(
+              height: 5,
+            ),
+            TextField(
+                controller: controllerGender,
+                decoration: InputDecoration(
+                  labelText: 'Gender',
+                )),
+            SizedBox(
+              height: 5,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(2.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -71,6 +91,8 @@ class _UserDetailPageState extends State<UserDetailPage> {
                             RandomUser userM = user;
                             userM.name = controllerName.text;
                             userM.city = controllerCity.text;
+                            userM.email = controllerEmail.text;
+                            userM.gender = controllerGender.text;
                             await userController.updateUser(userM);
                             Get.back();
                           },
