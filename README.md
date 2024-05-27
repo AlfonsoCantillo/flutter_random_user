@@ -1,19 +1,15 @@
-# f_random_user_template
+Administración de usuarios aleatorios en Flutter
 
-Implementar:
-- UserRemoteDataSource
-- UserLocalDataSource con los métodos sqflite (recordar el uso de await con métodos que retornan un futuro)
-- UserRepository
-- UserUseCase
+Demo:
 
-<img src="https://user-images.githubusercontent.com/4458129/178789236-ba1f46e6-8765-4e5a-95d2-ef565ac6d00e.gif" width="300" />
+<img src="/web/random_users.gif" width="300" />
 
-Implementación en: https://github.com/augustosalazar/f_local_database_sqlite
+La implementación del presente, se realiza en base al template: https://github.com/augustosalazar/f_random_user_sqflite_template.git
 
-Referencias:
+Test de integración de pruebas:
 
-https://pub.dev/packages/sqflite
+flutter test .\integration_test\app_test.dart
 
-Run the integration test with:
+Resultado:
 
-flutter drive --driver test_driver/integration_test.dart --target integration_test/app_test.dart
+<img src="/web/test.png" />
